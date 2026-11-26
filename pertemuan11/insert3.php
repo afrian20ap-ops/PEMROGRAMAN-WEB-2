@@ -1,0 +1,17 @@
+<?php
+$con = mysqli_connect("localhost", "root", "", "lat_dbase");
+
+if (!$con) {  
+	die('Could not connect: ' . mysqli_connect_error());  
+}
+
+// Untuk keamanan (mencegah SQL Injection sederhana), disarankan menggunakan mysqli_real_escape_string atau prepared statements di masa depan
+$sql="INSERT INTO tbl_mhs (FirstName, LastName, Age)
+VALUES('$_POST[firstname]','$_POST[lastname]','$_POST[age]')"; 
+
+if (!mysqli_query($con, $sql)) {  
+	die('Error: ' . mysqli_error($con));  
+}
+echo "1 record added"; 
+mysqli_close($con);
+?>
